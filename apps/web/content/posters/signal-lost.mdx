@@ -1,0 +1,38 @@
+---
+title: Signal Lost
+slug: signal-lost
+publishedOn: 2026-05-20
+isFeatured: false
+themeColor: "#2F4F4F"
+frag: |
+  precision highp float;
+
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  float random(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+  }
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+
+    float scanline = sin(uv.y * 800.0 + uTime * 5.0) * 0.05;
+    float noise = random(uv + fract(uTime)) * 0.3;
+    float wave = sin(uv.x * 20.0 + uTime * 3.0) * 0.1;
+
+    float signal = scanline + noise + wave;
+    vec3 color = vec3(signal) + vec3(0.2, 0.3, 0.3);
+
+    gl_FragColor = vec4(color, 1.0);
+  }
+vertex: |
+  attribute vec2 uv;
+  attribute vec2 position;
+
+  void main() {
+    gl_Position = vec4(position, 0, 1);
+  }
+---
+
+Communication breaks down. Messages get corrupted. Meaning dissolves in transmission. We broadcast endlessly into static, hoping someone receives, but the noise floor rises forever.

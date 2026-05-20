@@ -1,0 +1,27 @@
+---
+title: Feed me tokens
+slug: poster-1
+publishedOn: 2026-02-27
+isFeatured: true
+themeColor: "#3498db"
+frag: |
+  precision highp float;
+
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+    vec3 color = 0.5 + 0.5 * cos(uTime + uv.xyx + vec3(0, 2, 4));
+    gl_FragColor = vec4(color, 1.0);
+  }
+vertex: |
+  attribute vec2 uv;
+  attribute vec2 position;
+
+  void main() {
+    gl_Position = vec4(position, 0, 1);
+  }
+---
+
+I'm more fussed about **whether** or not my new job will pay for my tokens than getting a promotion. Welcome to 2026.

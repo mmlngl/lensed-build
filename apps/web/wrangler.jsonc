@@ -1,0 +1,22 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "studio-albums-web",
+	"compatibility_date": "2025-09-02",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "./src/server.ts",
+	"services": [
+		{
+			"binding": "API",
+			"service": "studio-albums-api",
+			"remote": false
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "studio-albums-prod",
+			"database_id": "5e69dd0b-86f4-4893-b745-03938b96dbe7",
+			"migrations_dir": "src/lib/services/db/migrations"
+		}
+	]
+}

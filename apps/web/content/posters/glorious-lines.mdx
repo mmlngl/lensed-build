@@ -1,0 +1,41 @@
+---
+title: Glorious Lines
+slug: glorious-lines
+publishedOn: 2026-02-27
+isFeatured: true
+themeColor: black
+frag: |
+  precision highp float;
+
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  #define PI 3.14159
+  const float scale = 128.;
+
+  void main()
+  {
+      vec2 uv = (gl_FragCoord.yx - .5*uResolution.yx) / min(uResolution.x, uResolution.y);
+      float time = 2.*PI*(uTime/2.5);
+      float total = 0.;
+      for (int i = 0; i < 7; i++)
+      {
+          float angle = PI*float(i)/7.;
+          float len = dot(uv, vec2( cos(angle), sin(angle)));
+          total += (cos(2.*scale*len + time)+1.)/2.;
+      }
+      vec3 color = vec3(1.-abs(2.*fract(.5*total)-1.));
+      gl_FragColor = vec4(color, 1.0);
+  }
+
+vertex: |
+  attribute vec2 uv;
+  attribute vec2 position;
+
+  void main() {
+    gl_Position = vec4(position, 0, 1);
+  }
+---
+
+Too hot.
+Ache.

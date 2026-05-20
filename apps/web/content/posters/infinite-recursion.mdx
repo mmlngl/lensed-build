@@ -1,0 +1,34 @@
+---
+title: Infinite Recursion
+slug: infinite-recursion
+publishedOn: 2026-05-20
+isFeatured: false
+themeColor: "#4169E1"
+frag: |
+  precision highp float;
+
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  void main() {
+    vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
+
+    float d = length(uv);
+    float angle = atan(uv.y, uv.x);
+
+    float spiral = mod(d * 10.0 - angle * 3.0 - uTime * 2.0, 1.0);
+    float rings = step(0.5, spiral);
+
+    vec3 color = mix(vec3(0.1, 0.2, 0.5), vec3(0.3, 0.5, 1.0), rings);
+    gl_FragColor = vec4(color, 1.0);
+  }
+vertex: |
+  attribute vec2 uv;
+  attribute vec2 position;
+
+  void main() {
+    gl_Position = vec4(position, 0, 1);
+  }
+---
+
+Every abstraction leaks. Every solution creates new problems. Every layer built to simplify complexity just adds another layer to debug. We recurse deeper, never reaching base case.

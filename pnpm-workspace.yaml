@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - lefthook
+  - msgpackr-extract
+  - sharp
+  - unrs-resolver
+  - workerd

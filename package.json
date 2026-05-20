@@ -1,0 +1,25 @@
+{
+  "name": "studio-albums",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.13",
+    "@effect/vitest": "^0.29.0",
+    "@types/node": "^25.6.0",
+    "@vitest/coverage-v8": "^4.1.5",
+    "lefthook": "^2.1.6",
+    "turbo": "^2.9.8",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0"
+}

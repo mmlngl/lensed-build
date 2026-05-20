@@ -1,0 +1,33 @@
+---
+title: Entropy Wins
+slug: entropy-wins
+publishedOn: 2026-05-20
+isFeatured: false
+themeColor: "#8B4513"
+frag: |
+  precision highp float;
+
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  float noise(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+  }
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+    float n = noise(uv * 50.0 + uTime * 0.5);
+    float decay = 1.0 - length(uv - 0.5) * 1.2;
+    vec3 color = vec3(n * decay) * vec3(0.8, 0.5, 0.3);
+    gl_FragColor = vec4(color, 1.0);
+  }
+vertex: |
+  attribute vec2 uv;
+  attribute vec2 position;
+
+  void main() {
+    gl_Position = vec4(position, 0, 1);
+  }
+---
+
+Everything decays. Order dissolves into chaos. The universe trends toward maximum entropy, and no amount of effort can reverse it permanently. We are all fighting a losing battle against thermodynamics.
