@@ -3,7 +3,7 @@ import { allSkills } from "content-collections";
 import { SkillEntity } from "~lib/entities/skill";
 import { SkillCanvas, SkillContent, SkillHeader } from "~lib/features/skill";
 
-export const Route = createFileRoute("/skill/$slug")({
+export const Route = createFileRoute("/skills/$slug")({
 	component: SkillDetail,
 	loader: async ({ params }) => {
 		const skill = allSkills.find((p) => p.slug === params.slug);

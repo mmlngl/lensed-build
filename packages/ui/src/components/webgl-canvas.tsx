@@ -41,9 +41,15 @@ export const WebglCanvas: FC<WebglProps> = ({
 
 		const mesh = new OGL.Mesh(gl, { geometry, program });
 
+		let lastTime = 0;
+		let elapsedTime = 0;
+
 		function update(t: number) {
 			requestAnimationFrame(update);
-			program.uniforms.uTime.value = t * 0.001;
+			const delta = (t - lastTime) * 0.001;
+			lastTime = t;
+			elapsedTime += delta;
+			program.uniforms.uTime.value = elapsedTime;
 			renderer.render({ scene: mesh });
 		}
 

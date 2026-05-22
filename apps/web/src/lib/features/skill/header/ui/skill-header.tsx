@@ -9,7 +9,9 @@ export const SkillHeader: FC = () => {
 			<H1 className="text-balance font-mono text-[6rem] sm:text-[10rem] leading-20 sm:leading-30 uppercase my-12">
 				{skill.name}
 			</H1>
-			<Lead>{skill.description}</Lead>
+			<div className="max-w-2xl">
+				<Lead>{skill.description}</Lead>
+			</div>
 		</div>
 	);
 };

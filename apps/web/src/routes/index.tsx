@@ -1,14 +1,23 @@
 import { T } from "@btrt/ui/components/typography";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { allSkills } from "content-collections";
-import { Masthead } from "~lib/widgets/masthead";
-import { SkillCardWidget } from "~lib/widgets/skill-card";
+import { allSkills, type Skill } from "content-collections";
+import { ContentSection } from "~lib/widgets/content-section";
+import { SkillList } from "~lib/widgets/skill-list";
 
 export const Route = createFileRoute("/")({
 	component: PublicHome,
 	loader: () => {
+		const featuredAndGroupedByDiscipline = allSkills.reduce(
+			(acc, skill) => {
+				acc[skill.discipline] = acc[skill.discipline] || [];
+				if (skill.isFeatured) acc[skill.discipline].push(skill);
+				return acc;
+			},
+			{} as Record<string, Skill[]>,
+		);
+
 		return {
-			skills: allSkills,
+			skills: featuredAndGroupedByDiscipline,
 		};
 	},
 });
@@ -23,19 +32,24 @@ function PublicHome() {
 				</T.H1>
 			</header>
 
-			<div className="flex flex-col gap-16">
-				<section className="max-w-md">
-					<T.H1 className="border-b border-t py-2 mb-4">Skills</T.H1>
+			<div className="flex flex-col gap-8 max-w-md">
+				{Object.entries(skills).map(([discipline, skillList]) =>
+					skillList.length > 0 ? (
+						<ContentSection
+							key={discipline}
+							heading={discipline}
+							footer={
+								<Link to="/skills" className="hover:text-primary">
+									See More ⇝
+								</Link>
+							}
+						>
+							<SkillList skills={skillList} />
+						</ContentSection>
+					) : null,
+				)}
 
-					<ul>
-						{skills.map((skill) => (
-							<SkillCardWidget skill={skill} key={skill.slug} />
-						))}
-					</ul>
-				</section>
-				<section className="max-w-md">
-					<T.H1 className="border-b border-t py-2 mb-4">About</T.H1>
-
+				<ContentSection heading="About">
 					<T.P>
 						Nullam nec ultricies lectus. Aenean elit ante, lacinia fermentum
 						hendrerit vel, porttitor et mi. Quisque euismod porttitor ex, nec
@@ -44,7 +58,7 @@ function PublicHome() {
 						Duis dapibus sagittis diam, vitae ultrices tortor congue sit amet.
 						Sed euismod nulla nulla, sit amet pretium lorem tempor in.{" "}
 					</T.P>
-				</section>
+				</ContentSection>
 			</div>
 		</div>
 	);

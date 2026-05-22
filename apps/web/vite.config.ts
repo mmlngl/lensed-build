@@ -12,7 +12,12 @@ const config = defineConfig({
 		devtools(),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tailwindcss(),
-		tanstackStart(),
+		tanstackStart({
+			prerender: {
+				enabled: true,
+				crawlLinks: true,
+			},
+		}),
 		viteReact(),
 		contentCollections({
 			configPath: "./src/lib/shared/content-collections.ts",

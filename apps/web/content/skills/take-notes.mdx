@@ -1,10 +1,9 @@
 ---
-name: /make-deck
-slug: make-deck
-category: convincing
-isFeatured: true
+name: /take-notes
+slug: take-notes
 discipline: PM
-oneliner: Persuasive Presentations
+category: productivity
+oneliner: Capture and recall everything
 description: Build a persuasive presentation deck with beginning/middle/end structure. Use when user wants to create slides, build a presentation, or craft a pitch deck.
 themeColor: black
 fragmentShader: |
@@ -17,22 +16,35 @@ fragmentShader: |
   }
 
   void main() {
-    float cellSize = 50.0;
-    vec2 cell = floor(gl_FragCoord.xy / cellSize);
-    float checker = mod(cell.x + cell.y, 2.0);
+    float size = 40.0;
+    float height = size * 0.866;  // sqrt(3)/2 for equilateral
 
-    // Each cell flips independently on a random schedule
-    // Using cell hash as seed for its unique timing
-    float cellHash = hash(cell);
+    vec2 p = gl_FragCoord.xy;
+    float row = floor(p.y / height);
+    float col = floor(p.x / size);
 
-    // Time between flips for this cell: 5-15 seconds
+    // Which half of the cell: left (up) or right (down)
+    float localX = mod(p.x, size);
+    float localY = mod(p.y, height);
+
+    // Up triangle if in left half and below/above midline appropriately
+    // Down triangle if in right half
+    float isUp = step(localX, size * 0.5);
+    float isDown = 1.0 - isUp;
+
+    // Flip row for down triangles to interlock
+    float triRow = mix(row * 2.0, row * 2.0 + 1.0, isDown);
+
+    // Triangle ID for hash
+    vec2 triId = vec2(col, triRow);
+
+    // Checker: alternate based on row
+    float checker = mod(triRow + col, 2.0);
+
+    // Animation
+    float cellHash = hash(floor(triId));
     float flipInterval = 15.0 + cellHash * 15.0;
-
-    // Phase within current interval
     float phase = mod(uTime + cellHash * 100.0, flipInterval) / flipInterval;
-
-    // Flip when phase crosses 0.5 (random moment in each cell's cycle)
-    // Small window so only 1-2 cells flip at a time
     float isFlipping = step(0.49, phase) * step(phase, 0.51);
 
     checker = mix(checker, 1.0 - checker, isFlipping);
