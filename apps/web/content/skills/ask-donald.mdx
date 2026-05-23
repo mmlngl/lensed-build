@@ -1,0 +1,125 @@
+---
+name: /ask-donald
+slug: ask-donald
+category: convincing
+isFeatured: true
+discipline: PM
+oneliner: Make the customer the hero, not you
+description: Pressure-test your messaging against Donald Miller's Storybrand framework. Use when your copy sounds like you're the hero instead of the guide, or when you want to check if your pitch puts the customer center stage.
+themeColor: black
+fragmentShader: |
+  precision highp float;
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+
+  float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+  }
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+    vec2 centered = uv - 0.5;
+    
+    float angle = atan(centered.y, centered.x);
+    float radius = length(centered);
+    
+    float rings = sin(radius * 24.0 - uTime * 1.5) * 0.5 + 0.5;
+    float rays = sin(angle * 8.0 + uTime * 0.8) * 0.5 + 0.5;
+    
+    float n = noise(uv * 4.0 + uTime * 0.3);
+    float grain = hash(uv * uResolution + uTime) * 0.15;
+    
+    float pattern = mix(rings, rays, 0.3);
+    float brightness = pattern * 0.4 + n * 0.2 + grain;
+    brightness = smoothstep(0.1, 0.7, brightness);
+    
+    gl_FragColor = vec4(vec3(brightness), 1.0);
+  }
+---
+
+You spent weeks on your pitch. The deck looks sharp. The copy sounds confident.
+
+And then Donald Miller would say: "You're the hero."
+
+Not the customer. You.
+
+Every "we" and "our" is a red flag. You're standing on stage telling your story — when the customer should be the one saving the day.
+
+That's the ego trap. And it's killing your pitch.
+
+## The Disease: Making Yourself the Hero
+
+Storybrand has one rule: the customer is the hero. The brand is the guide.
+
+Yoda trains Luke. Gandalf guides the fellowship. Apple solved the PC problem for regular people. You are Yoda — not Luke.
+
+But here's what happens when you're building alone at 11pm: you fall in love with your solution. Your product. Your vision.
+
+And suddenly your messaging sounds like this:
+
+- "We help businesses grow"
+- "Our platform delivers results"
+- "We've built the best-in-class solution"
+
+You're the hero. The customer is a supporting character in your story.
+
+Donald Miller would call this "feature dumping into a void." You have a solution looking for a problem. The customer doesn't see themselves anywhere.
+
+## What Storybrand Actually Demands
+
+The customer has a problem. You have the answer. But you can't just say "use our product."
+
+You have to frame the transformation:
+
+1. **Character** — Position the customer as the hero, not yourself
+2. **Problem** — Name the enemy (the problem they face) clearly
+3. **Guide** — You are Yoda. Wise. Prepared. Not the one swinging the lightsaber
+4. **Plan** — Show the path (not your feature list)
+5. **Call to action** — What do they do next?
+6. **Success** — Paint the transformed state. What does their life look like after?
+7. **Avoid failure** — What's the cost of inaction?
+
+Most brands skip straight to step 4. They list features and hope the customer connects the dots.
+
+## The Moment Most People Miss
+
+The moment before you write copy, you need to ask: "Whose story is this?"
+
+If the answer is "mine" — you're already off track.
+
+The customer's problem is the opening scene. Your solution is the guide that helps them win. The customer's transformation is the ending.
+
+You don't get a cameo. You don't get the climax. You're the mentor who shows up when the hero is ready.
+
+This isn't humility. It's strategy. People buy from heroes they believe in — not from heroes who are too busy talking about themselves.
+
+## Why This Skill Exists
+
+You can learn Storybrand in an afternoon. But applying it to your own copy? That's where the ego fights back.
+
+Every sentence you write, you have to ask: "Is the customer the hero here?"
+
+When you're deep in your product, it's nearly impossible to see. You built it. You love it. You are the hero of the story you tell yourself about it.
+
+Ask Donald forces a challenge. It catches the "we" that should be "you." It surfaces the features that should be transformations.
+
+You're not writing copy. You're redirecting a story — and your ego keeps sneaking back into the frame.
+
+## The One Thing
+
+Before you publish anything — a landing page, a pitch deck, an email sequence — ask:
+
+"Whose story is this?"
+
+If the answer isn't the customer, you're not ready.

@@ -1,0 +1,128 @@
+---
+name: /interrogate-idea
+slug: interrogate-idea
+category: discovery
+isFeatured: true
+discipline: PM
+oneliner: Pressure-test ideas before you build
+description: Check all three dimensions — customer experience, business, code — before you build anything. Use when you have an idea and want to validate it, or when an idea feels half-formed.
+themeColor: black
+fragmentShader: |
+  precision highp float;
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+    vec2 grid = floor(uv * 8.0);
+    float h = hash(grid);
+
+    float wave = sin(uv.y * 8.0 + uTime * 2.0 + h * 6.28) * 0.5 + 0.5;
+    float ripple = sin(length(uv - 0.5) * 16.0 - uTime * 3.0) * 0.5 + 0.5;
+
+    float pulse = mix(wave, ripple, 0.5);
+    float brightness = 0.1 + pulse * 0.15;
+
+    gl_FragColor = vec4(vec3(brightness), 1.0);
+  }
+---
+
+You had an idea at 11pm. You opened your AI tool, typed a prompt, and started building.
+
+By morning, you'd shipped something. It looked good. It worked.
+
+And then — nothing. No one cared. No traction. No revenue. Just an app that technically functions, for an audience that doesn't exist.
+
+You've done this before. Everyone has.
+
+The problem isn't the building. It's what came before it.
+
+## The Gap No One Talks About
+
+Everyone talks about execution. Ship faster. Iterate. Use AI to build in a weekend.
+
+But no one talks about the moment _before_ you build — when you're still just holding an idea and a dream.
+
+That's where most products die.
+
+Not in production. Not in shipping. In the gap between "interesting idea" and "should we actually build this."
+
+Most people don't cross that gap consciously. They just... start building. And then wonder why three months later, no one wants what they made.
+
+## What You're Actually Missing
+
+When you prompt AI with "build me an app for X," you're assuming X is real, people care, and the market exists.
+
+AI doesn't challenge those assumptions. It just builds fast.
+
+The problem isn't AI. It's that you've given AI a vague brief — and vague briefs produce vague results. Garbage in, garbage out.
+
+You wouldn't hire a developer and say "build me something good." But that's essentially what you're doing when you prompt AI without pressure-testing the idea first.
+
+## Interrogation Is the Discipline
+
+Before you write a line of code, you need to know three things:
+
+**Does a real customer have this problem?** Not "people might want this" — a specific person, with a specific pain, that you can describe in one sentence.
+
+**Will anyone pay?** "Users" aren't the same as "customers." Free users are a vanity metric. If you can't name how this makes money, you don't have a business — you have a hobby.
+
+**Can you actually build it?** Not "can it be built in theory" — can you ship something meaningful in 2-4 weeks? Can you name the technical unknowns that would kill it?
+
+If you can answer all three, you're ready to build. If not, you're building blind.
+
+That's interrogation. It's not a checklist. It's a filter — a way to catch the gaps before they become months of wasted effort.
+
+## The Double-Diamond Foundation
+
+Most product frameworks tell you to "validate" before building. But they don't tell you _what to validate_ or _how to know when you're done_.
+
+Interrogation breaks validation into three dimensions. Each dimension has a gate. Pass the gate, or close the gap.
+
+The dimensions aren't arbitrary — they're where most indie-hackers and PMs are weakest:
+
+- **Customer Experience** — Most builders skip straight to solution. They fall in love with what they want to make, not what the customer actually needs.
+
+- **Business** — "Build it and they will come" is a fantasy. If you can't describe who pays and why, you're not building a product — you're building a prototype.
+
+- **Code** — "We'll figure it out" is not a plan. Technical unknowns kill projects. Surface them early.
+
+Interrogation forces you to face each dimension. You can't paper over a gap. You either close it or you accept that you're proceeding blind.
+
+## Why This Works
+
+When you interrogate an idea, something shifts. The vague excitement becomes specific. The "everyone needs this" becomes "amateur bakers aged 25-45 who follow sourdough influencers."
+
+The "it'll be free with premium features" becomes "I have no idea how this earns money."
+
+You find the gaps. And either you close them — or you kill the idea before investing six months in something doomed.
+
+This is the discipline AI can't provide. AI accelerates. It doesn't interrogate.
+
+## The Skill, Not the Theory
+
+Interrogation starts as a conversation. One question at a time. Your answers reveal the gaps. The gaps tell you what to do next.
+
+After interrogation, you'll have a score for each dimension. If a dimension is incomplete, you know exactly what's missing. You can close it — with another skill, with research, with honest thinking — before you write a single line of code.
+
+Or you'll realize the idea isn't ready. And that's a win too. Better to kill a bad idea on day one than after three months of building something no one wants.
+
+## What Interrogation Is Not
+
+It's not a way to kill ideas. It's a way to know which ideas are worth your time.
+
+It's not a checklist you tick and ignore. It's a conversation that surfaces the gaps you were avoiding.
+
+It's not a one-time gate. You can return to interrogation whenever new information changes the picture.
+
+## Ready to Interrogate?
+
+Before you build your next idea — any idea — run it through interrogation first.
+
+You'll either get a green light you actually earned, or you'll discover why your idea isn't ready yet.
+
+Either way, you'll save time. The only bad interrogation result is the one you ignore.
