@@ -5,14 +5,7 @@ description: Pressure-test an idea by checking all three dimensions (customer ex
 
 <what-to-do>
 
-Pressure-test the user's idea across three dimensions. Ask questions one at a time, wait for a response before continuing.
-
-For each question:
-
-1. Ask it clearly
-2. Note the response
-3. If the answer is weak, note the gap explicitly
-4. Proceed to the next question
+Pressure-test the user's idea across three dimensions. Ask questions one at a time, wait for a response before continuing. Keep it conversational — use the user's answers to form the next question naturally. You're not reading a script, you're having a dialogue.
 
 After all questions are answered, score each dimension and present the results. If any dimension is INCOMPLETE, the user must close the gap before proceeding.
 
@@ -34,8 +27,7 @@ Every product idea lives in three dimensions simultaneously:
 
 **1. Check for a name**
 
-- If the user has already given the idea a name (or codename), use that and skip to Q1.
-- If no name was given, create a temporary codename based on Greek mythology — single word, no context. Tell the user this is temporary and can be changed later.
+If the user has already given the idea a name, use it and move on. If not, give it a temporary codename — Greek mythology, single word, no context. Tell them it can be changed later.
 
 ---
 
@@ -43,26 +35,25 @@ Every product idea lives in three dimensions simultaneously:
 
 **1. Imagine 100 of your customers in a room. What do they have in common?**
 
-- Prompt: "Who are these people? Be specific — age, context, what they do"
-- If the user says "everyone" or names themselves, push back: "Not you. Who else?"
+Imagine 100 of their customers in a room. What do they have in common?
+Push for specifics: age, context, what they do, what they're motivated by, what they're driven by.
+If they say "everyone" or themselves, push back.
 
-**2. What makes you confident that they care?**
+**2. What problem are they experiencing?**
 
-- Prompt: "How do you know this is a real problem they experience?"
-- Evidence includes: interviews, research, signals of engagement
-- "I care" is not evidence. "I asked 10 people and 8 said X" is.
+Don't assume — get the customer's problem in the words of the user.
 
-**3. How do they solve this problem today?**
+**3. How do you know they care?**
 
-- Prompt: "What are they doing right now to address this need?"
-- If they're not solving it: might not be a real problem
-- If they're solving it badly: opportunity exists
+Evidence: interviews, research, engagement signals. "I care" is not evidence.
 
-**4. What's different about your approach?**
+**4. How do they solve this problem today?**
 
-- Prompt: "Why would they switch to your solution?"
-- "AI" or "better UX" or "cheaper" are not differentiators by themselves
-- Must articulate specific value
+If they care, they're already solving it somehow. How?
+
+**5. What's different about your approach?**
+
+Why would they switch? "AI" or "better UX" are not differentiators on their own.
 
 ---
 
@@ -70,14 +61,10 @@ Every product idea lives in three dimensions simultaneously:
 
 **1. How do your customers pay today?**
 
-- Prompt: "What are they currently spending on this problem — money, time, attention?"
-- Direct payment (buying a product/service)
-- Indirect payment (ads, subscription to free tier, time spent)
-- No payment model yet = gap
+What are they currently spending — money, time, attention? If nothing, that's a gap.
 
-**2. Roughly how many people have this problem? (10s / 100s / 1000s / millions)**
+**2. If you picked 100 people at random, how many would care about this?**
 
-- Prompt: "If you picked 1000 people at random, how many would care about this?"
 - Small niche: viable if profitable per person
 - Large market: viable if you can reach them
 
@@ -87,18 +74,15 @@ Every product idea lives in three dimensions simultaneously:
 
 **1. What's the core domain?**
 
-- Prompt: "What data are you modelling? What are the key entities and relationships?"
-- Forces the user to think about the problem space, not the solution
+What data are you modelling? What are the key entities and relationships?
 
 **2. What's the simplest version that proves it works?**
 
-- Prompt: "What's the MVP — not the feature set, the thing you can ship in 2-4 weeks?"
-- If the user can't scope it small, that's a gap
+What's the MVP — not the feature list, the thing you can ship in 2-4 weeks?
 
 **3. What do you not know how to build?**
 
-- Prompt: "What are the technical unknowns — the things you'd need to research or figure out?"
-- "We'll figure it out" is not a plan
+What are the technical unknowns? "We'll figure it out" is not a plan.
 
 ---
 
