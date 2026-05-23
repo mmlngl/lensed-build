@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { allSkills } from "content-collections";
 import { SkillEntity } from "~lib/entities/skill";
 import { SkillCanvas, SkillContent, SkillHeader } from "~lib/features/skill";
+import { Cta } from "~lib/widgets/cta";
 
 export const Route = createFileRoute("/skills/$slug")({
 	component: SkillDetail,
@@ -19,7 +20,15 @@ function SkillDetail() {
 			<SkillEntity skill={skill}>
 				<SkillCanvas className="h-[108px] sm:h-[158px]" />
 				<SkillHeader />
-				<SkillContent />
+				<div className="max-w-[65ch]">
+					<Cta />
+				</div>
+				<div className="prose">
+					<SkillContent />
+				</div>
+				<div className="max-w-[65ch]">
+					<Cta />
+				</div>
 			</SkillEntity>
 		</div>
 	);

@@ -3,11 +3,12 @@ import { Button, type ButtonProps } from "@lensed/ui/components/button";
 
 export const BuyButton: FC<ButtonProps> = ({
 	variant = "outline",
+	children = "Buy $9.78",
 	...props
 }) => {
 	return (
 		<Button variant={variant} {...props}>
-			Buy $9.78
+			{children}
 		</Button>
 	);
 };

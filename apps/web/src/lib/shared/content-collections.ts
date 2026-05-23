@@ -11,8 +11,14 @@ const Skill = Schema.Struct({
 		Schema.withConstructorDefault(Effect.succeed(false)),
 	),
 	description: Schema.String,
-	category: Schema.String,
-	discipline: Schema.String,
+	category: Schema.String.pipe(
+		Schema.annotate({
+			title: "category",
+			description: "The purpose of the skill",
+			examples: ["convincing", "discovery"],
+		}),
+	),
+	discipline: Schema.Literals(["Dev", "PM", "Design"]),
 	themeColor: Schema.String,
 	fragmentShader: Schema.String,
 	vertexShader: Schema.String.pipe(

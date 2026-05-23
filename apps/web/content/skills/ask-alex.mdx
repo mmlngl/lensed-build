@@ -1,0 +1,39 @@
+---
+name: /ask-alex
+slug: ask-alex
+isFeatured: false
+category: Discovery
+discipline: Design
+oneliner: Brutal business critique
+description: Apply Alex Hormozi's business frameworks to brutally evaluate ideas, offers, pricing, and strategy. Delivers a 1-5 compliance score and actionable fixes.
+themeColor: black
+fragmentShader: |
+  precision highp float;
+  uniform float uTime;
+  uniform vec2 uResolution;
+
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution.xy;
+    vec2 center = uv - 0.5;
+    float angle = atan(center.y, center.x);
+    float radius = length(center);
+    
+    float rays = sin(angle * 12.0 + uTime * 0.5) * 0.5 + 0.5;
+    float rings = sin(radius * 40.0 - uTime * 2.0) * 0.5 + 0.5;
+    
+    float brightness = mix(rays, rings, 0.5) * (1.0 - radius * 1.2);
+    brightness = max(0.0, brightness);
+    
+    gl_FragColor = vec4(vec3(brightness), 1.0);
+  }
+---
+
+You have a business idea. You think it's good. Alex Hormozi would ask: "Is it though?"
+
+Without this skill, you build in a vacuum. You convince yourself an idea works because you want it to. You price it too low because you're scared. You write offers that sound nice but convert nobody. You miss the frameworks that separate businesses that make money from businesses that barely survive.
+
+**The moment most people miss**: They're thinking about their product, not about the customer's problem and whether it's _dangerous_ enough to make them pay anything. They think "useful" is enough. It's not.
+
+**Why it exists**: Alex Hormozi built a company doing $300M+ in acquisition by ruthlessly applying his frameworks — ACR, $100M Offer, Grand Slam Offers. This skill puts that lens on anything you bring to it: your idea, your offer, your pricing, your marketing. It doesn't care about your feelings. It cares about whether it will work.
+
+**The gut check**: Before you run your idea through this — are you ready to hear it's mediocre, and will you actually change it if it is?
